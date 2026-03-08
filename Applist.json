@@ -1,1 +1,17 @@
-{ "message": "No apps available at the moment" }
+[
+  {
+    "name": "Dream Browser",
+    "minAndroid": 5,
+    "downloadLink": "https://dreambyte.studios/dreambrowser.apk"
+  },
+  {
+    "name": "Jake Browser",
+    "minAndroid": 5,
+    "downloadLink": "https://dreambyte.studios/jakebrowser.apk"
+  },
+  {
+    "name": "Drawable & Layout Maker",
+    "minAndroid": 6,
+    "downloadLink": "https://dreambyte.studios/drawablelayoutmaker.apk"
+  }
+]
