@@ -2,16 +2,16 @@
   {
     "name": "Dream Browser",
     "minAndroid": 5,
-    "downloadLink": "https://dreambyte.studios/dreambrowser.apk"
+    "downloadLink": "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/apps/dreambytebrowser.apk"
   },
   {
     "name": "Jake Browser",
     "minAndroid": 5,
-    "downloadLink": "https://dreambyte.studios/jakebrowser.apk"
+    "downloadLink": "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/apps/jakebrowser.apk"
   },
   {
     "name": "Drawable & Layout Maker",
     "minAndroid": 6,
-    "downloadLink": "https://dreambyte.studios/drawablelayoutmaker.apk"
+    "downloadLink": "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/apps/drawablelayoutmaker.apk"
   }
 ]
