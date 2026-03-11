@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>DreamByte Store</title>
 <style>
-  /* Estilo early 2000s con azul y celeste */
   body {
     background-color: #e0f7ff; /* celeste claro */
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -14,39 +13,59 @@
   }
   header {
     background-color: #0099ff; /* azul DreamByte */
-    color: #ffffff;
+    color: #fff;
     padding: 20px;
     text-align: center;
     font-size: 2em;
-    border-bottom: 4px solid #000080;
+    border-bottom: 4px solid #004080;
   }
   main {
     padding: 20px;
   }
   .app {
+    display: flex;
+    align-items: center;
     border: 2px dashed #0099ff;
     background-color: #b3e0ff;
     padding: 10px;
     margin: 10px 0;
   }
+  .app.android {
+    border: 2px solid #004080;
+    background-color: #0077cc; /* estilo Holo azul */
+    color: #fff;
+  }
+  .app img {
+    width: 64px;
+    height: 64px;
+    margin-right: 15px;
+    border-radius: 8px;
+    border: 1px solid #004080;
+  }
   .app h2 {
     margin: 0;
     font-size: 1.5em;
-    color: #004080;
   }
   .app p {
     margin: 5px 0;
   }
   .download-btn {
+    margin-top: 5px;
+    display: inline-block;
     background-color: #0066cc;
     color: #fff;
     padding: 5px 10px;
     text-decoration: none;
     font-weight: bold;
     border: 2px solid #004080;
+    border-radius: 4px;
+  }
+  .app.android .download-btn {
+    background-color: #004080;
+    border-color: #002244;
   }
   .download-btn:hover {
-    background-color: #004080;
+    opacity: 0.9;
   }
 </style>
 </head>
@@ -60,20 +79,27 @@
 
 <script>
   const appsJson = "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/Applist.json";
+  const iconsBase = "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/icons/";
 
   fetch(appsJson)
     .then(res => res.json())
     .then(apps => {
       const container = document.getElementById('app-list');
-      container.innerHTML = ""; // Limpiar mensaje de carga
+      container.innerHTML = "";
 
       apps.forEach(app => {
         const appDiv = document.createElement('div');
-        appDiv.className = 'app';
+        const isAndroid = app.minAndroid !== undefined;
+        appDiv.className = 'app' + (isAndroid ? ' android' : '');
+        const iconUrl = iconsBase + app.downloadLink.split('/').pop().replace('.apk', '.png');
+
         appDiv.innerHTML = `
-          <h2>${app.name}</h2>
-          <p>Requiere Android ${app.minAndroid} o superior</p>
-          <a class="download-btn" href="${app.downloadLink}" target="_blank" download>Descargar</a>
+          <img src="${iconUrl}" alt="${app.name} icon">
+          <div>
+            <h2>${app.name}</h2>
+            ${isAndroid ? `<p>Requiere Android ${app.minAndroid} o superior</p>` : ''}
+            <a class="download-btn" href="${app.downloadLink}" target="_blank" download>Descargar</a>
+          </div>
         `;
         container.appendChild(appDiv);
       });
