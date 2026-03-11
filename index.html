@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DreamByte Store</title>
+<style>
+  /* Estilo early 2000s */
+  body {
+    background-color: #c0c0c0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #ff6600;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    border-bottom: 4px solid #000;
+  }
+  main {
+    padding: 20px;
+  }
+  .app {
+    border: 2px dotted #000;
+    background-color: #ffff99;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  .app h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #0033cc;
+  }
+  .app p {
+    margin: 5px 0;
+  }
+  .download-btn {
+    background-color: #00cc00;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #000;
+  }
+  .download-btn:hover {
+    background-color: #009900;
+  }
+</style>
+</head>
+<body>
+
+<header>DreamByte Store</header>
+
+<main id="app-list">
+  <p>Cargando apps...</p>
+</main>
+
+<script>
+  const githubRawBase = "https://raw.githubusercontent.com/tuusuario/dreambyte-store/main/apps/";
+  const appsJson = "https://raw.githubusercontent.com/tuusuario/dreambyte-store/main/apps.json";
+
+  fetch(appsJson)
+    .then(res => res.json())
+    .then(apps => {
+      const container = document.getElementById('app-list');
+      container.innerHTML = ""; // Limpiar mensaje de carga
+
+      apps.forEach(app => {
+        const appDiv = document.createElement('div');
+        appDiv.className = 'app';
+        appDiv.innerHTML = `
+          <h2>${app.name}</h2>
+          <p>${app.description}</p>
+          <a class="download-btn" href="${githubRawBase + app.file}" download>Descargar</a>
+        `;
+        container.appendChild(appDiv);
+      });
+    })
+    .catch(err => {
+      document.getElementById('app-list').innerHTML = "<p>Error al cargar las apps 😢</p>";
+      console.error(err);
+    });
+</script>
+
+</body>
+  </html>
