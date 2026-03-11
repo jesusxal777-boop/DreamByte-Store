@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>DreamByte Store</title>
 <style>
-  /* Estilo early 2000s pero con azul y celeste */
+  /* Estilo early 2000s con azul y celeste */
   body {
     background-color: #e0f7ff; /* celeste claro */
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -59,7 +59,6 @@
 </main>
 
 <script>
-  const githubRawBase = "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/apps/";
   const appsJson = "https://raw.githubusercontent.com/jesusxal777-boop/DreamByte-Store/main/Applist.json";
 
   fetch(appsJson)
@@ -73,8 +72,8 @@
         appDiv.className = 'app';
         appDiv.innerHTML = `
           <h2>${app.name}</h2>
-          <p>${app.description}</p>
-          <a class="download-btn" href="${githubRawBase + app.file}" download>Descargar</a>
+          <p>Requiere Android ${app.minAndroid} o superior</p>
+          <a class="download-btn" href="${app.downloadLink}" target="_blank" download>Descargar</a>
         `;
         container.appendChild(appDiv);
       });
